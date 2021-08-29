@@ -34,10 +34,15 @@ let sendData = (data) => {
 
 // WebRTC methods
 let pc;
-let localStream;
+
+// variable for initialize connection
+let localStream; 
+
+// get element
 let remoteStreamElement = document.querySelector('#remoteStream');
 let localStreamElement = document.querySelector('#localStream');
 localStreamElement.muted = true;
+
 let getLocalStream = () => {
   navigator.mediaDevices.getUserMedia({ audio: {
     autoGainControl: false,
@@ -51,6 +56,7 @@ let getLocalStream = () => {
   }, video: true })
     .then((stream) => {
       console.log(user);
+      // initialize connection
       localStream = stream;
       localStreamElement.srcObject = stream;
       // Connect after making sure that local stream is availble
