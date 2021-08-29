@@ -36,7 +36,8 @@ let sendData = (data) => {
 let pc;
 let localStream;
 let remoteStreamElement = document.querySelector('#remoteStream');
-
+let localStreamElement = document.querySelector('#localStream');
+localStreamElement.muted = true;
 let getLocalStream = () => {
   navigator.mediaDevices.getUserMedia({ audio: {
     autoGainControl: false,
@@ -51,6 +52,7 @@ let getLocalStream = () => {
     .then((stream) => {
       console.log(user);
       localStream = stream;
+      localStreamElement.srcObject = stream;
       // Connect after making sure that local stream is availble
       socket.connect(serd);
     })
@@ -114,9 +116,7 @@ let handleSignalingData = (data) => {
     case 'offer':
       createPeerConnection();
       pc.setRemoteDescription(new RTCSessionDescription(data));
-      if (confirm("emergency!!")){
-        sendAnswer();
-      }
+      sendAnswer();
       break;
     case 'answer':
       pc.setRemoteDescription(new RTCSessionDescription(data));
