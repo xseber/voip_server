@@ -6,7 +6,7 @@ var scheme = window.location.protocol == "https:" ? 'wss://' : 'ws://';
 // If you are testing on localhost, you can just use PC_CONFIG = {}
 
 const PC_CONFIG = { iceServers: [{
-  urls: "turn:34.121.171.53:8080",
+  urls: "turn:34.70.69.8:8080",
   username: "user",
   credential: "root"
 }, {
